@@ -1,5 +1,8 @@
 package test.simple.example.raian.com.org.simplejobscheduler;
 
+import android.app.NotificationManager;
+import android.content.Context;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -16,17 +19,25 @@ public class MySimpleJob extends JobService {
     public boolean onStartJob(JobParameters job) {
         Log.d(TAG, "onStartJob");
         Toast.makeText(getApplicationContext(), "This is message in the job", Toast.LENGTH_LONG).show();
+        Log.d(TAG, "*****");
 
-//        Thread myThread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Log.d(TAG, "******************");
-//            }
-//        });
-//
-//        myThread.start();
+        buildNotification();
 
         return true;
+    }
+
+    public void buildNotification(){
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(getApplicationContext())
+                        .setSmallIcon(R.drawable.notification_icon)
+                        .setContentTitle("My notification")
+                        .setContentText("Hello World!");
+
+        NotificationManager mNotificationManager =
+
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(001, mBuilder.build());
     }
 
     @Override

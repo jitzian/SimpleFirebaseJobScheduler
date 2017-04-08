@@ -14,6 +14,8 @@ import com.firebase.jobdispatcher.JobTrigger;
 import com.firebase.jobdispatcher.Lifetime;
 import com.firebase.jobdispatcher.Trigger;
 
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private Button mButtonStart, mButton2;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
+        convertDateToInt();
 
 //        FirebaseJobDispatcher dispatcher =
 //                new FirebaseJobDispatcher(
@@ -44,11 +47,17 @@ public class MainActivity extends AppCompatActivity {
                 .setService(MySimpleJob.class)
                 .setRecurring(true)
                 .setTag("ToastServiceTAG")
-                .setTrigger(Trigger.executionWindow(15, 25))
+                .setTrigger(Trigger.executionWindow(0, 15))
                 .setReplaceCurrent(true)
                 .build();
 
         firebaseJobDispatcher.schedule(job);
 
+    }
+
+    public void convertDateToInt(){
+        Log.d(TAG, "convertDateToInt");
+        int i = (int) new Date().getTime();
+        Log.d(TAG, "time:" + i);
     }
 }
