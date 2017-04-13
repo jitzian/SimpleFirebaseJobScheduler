@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
@@ -13,6 +14,7 @@ import com.firebase.jobdispatcher.Job;
 import com.firebase.jobdispatcher.JobTrigger;
 import com.firebase.jobdispatcher.Lifetime;
 import com.firebase.jobdispatcher.Trigger;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.util.Date;
 
@@ -26,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
+
+        mButton2 = (Button) findViewById(R.id.mButton2);
+
+        FirebaseCrash.report(new Exception("My first Android non-fatal error"));
+
         convertDateToInt();
 
 //        FirebaseJobDispatcher dispatcher =
@@ -52,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         firebaseJobDispatcher.schedule(job);
+
+        mButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(null, "something", Toast.LENGTH_LONG).show();
+            }
+        });
+
 
     }
 

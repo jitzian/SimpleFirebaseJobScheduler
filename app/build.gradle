@@ -19,9 +19,9 @@ android {
     }
 }
 ext{
-    fireBaseJobDispatcherVersionLib = '0.5.2'
-    fireBaseVersionLib = "9.2.0"
-
+    firebaseJobDispatcherVersionLib = '0.5.2'
+    firebaseVersionLib = "9.2.0"
+    firebaseCrashReportingVersionLib = '9.6.1'
 }
 
 dependencies {
@@ -34,7 +34,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     //Firebase Job
-    compile "com.firebase:firebase-jobdispatcher:${fireBaseJobDispatcherVersionLib}"
-    compile "com.google.firebase:firebase-core:${fireBaseVersionLib}"
+    compile "com.firebase:firebase-jobdispatcher:${firebaseJobDispatcherVersionLib}"
+    compile "com.google.firebase:firebase-core:${firebaseVersionLib}"
+
+    //Firebase Crash Reporting
+    compile "com.google.firebase:firebase-crash:${firebaseCrashReportingVersionLib}"
 }
 apply plugin: 'com.google.gms.google-services'

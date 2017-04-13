@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
+import com.google.firebase.crash.FirebaseCrash;
 
 /**
  * Created by raian on 3/27/17.
@@ -18,6 +19,7 @@ public class MySimpleJob extends JobService {
     @Override
     public boolean onStartJob(JobParameters job) {
         Log.d(TAG, "onStartJob");
+        FirebaseCrash.log(TAG + "::onStartJob");
         Toast.makeText(getApplicationContext(), "This is message in the job", Toast.LENGTH_LONG).show();
         Log.d(TAG, "*****");
 
